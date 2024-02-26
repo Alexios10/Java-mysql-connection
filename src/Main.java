@@ -20,24 +20,29 @@ public class Main {
         Statement statement = connection.createStatement();
 
         // Execute a query
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM spiller");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM spiller ");
+
+//        String newField = "ALTER TABLE spiller ADD adresse VARCHAR(100)";
+//
+//        statement.executeUpdate(newField);
 
         // Process the result set
         while (resultSet.next()) {
-
           int id = resultSet.getInt("spiller_id");
-          String name = resultSet.getString("navn");
+          String name = resultSet.getString("epost");
           // Retrieve other columns as needed
-          System.out.println("ID: " + id + ", Navn: " + name);
-          
+          System.out.println("ID: " + id + ", epost: " + name);
+
         }
         resultSet.close();
         statement.close();
         connection.close();
       }
+      // Driver error
     } catch (ClassNotFoundException e) {
       System.err.println("MySQL JDBC driver not found!");
       e.printStackTrace();
+      // SQL error
     } catch (SQLException e) {
       System.err.println("Failed to connect to MySQL!");
       e.printStackTrace();
